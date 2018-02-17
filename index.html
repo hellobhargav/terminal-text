@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Terminal Text Effect  || hellobhargavs</title>
+  
+  
+  
+   <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Khula:700);
+body {
+  background: #111;
+}
+.hidden {
+  opacity:0;
+}
+img{
+  width: 20%;
+}
+a{
+  color: white;
+}
+.console-container {
+ 
+  font-family:Khula;
+  font-size:3em;
+  text-align:center;
+  height:200px;
+  width:600px;
+  display:block;
+  position:absolute;
+  color:white;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin:auto;
+}
+.console-underscore {
+   display:inline-block;
+  position:relative;
+  top:-0.14em;
+  left:10px;
+}
+    </style>  
+</head>
+
+<body>
+
+  <div class='console-container'><span id='text'></span><div class='console-underscore' id='console'>&#95;</div>
+  <br>
+ <a href="https://codepen.io/hellobhargav/"> <i class="fab fa-codepen"></i></a>
+<a href="https://www.snapchat.com/add/bhargavwd"><i class="fab fa-snapchat-ghost"></i></a>
+  <a href="https://www.instagram.com/hello_bhargav/"><i class="fab fa-instagram"></i></a>
+<a href="https://twitter.com/BhargavaprasadD"><i class="fab fa-twitter"></i></a>
+ <a href="https://www.facebook.com/hellobhargav"><i class="fab fa-facebook-square"></i></a>
+<a href="https://github.com/hellobhargav"><i class="fab fa-github-square"></i></a>
+<br><img src="https://hellobhargav.com/images/logo/logo.png"></div>
+  
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+    <script >
+    // function([string1, string2],target id,[color1,color2]) 
+// Made by hellobhargav   
+ consoleText(['Welcome to my world.', 'Follow me', 'Made with Love.'], 'text',['tomato','lightgreen','lightblue']);
+
+function consoleText(words, id, colors) {
+  if (colors === undefined) colors = ['#fff'];
+  var visible = true;
+  var con = document.getElementById('console');
+  var letterCount = 1;
+  var x = 1;
+  var waiting = false;
+  var target = document.getElementById(id)
+  target.setAttribute('style', 'color:' + colors[0])
+  window.setInterval(function() {
+
+    if (letterCount === 0 && waiting === false) {
+      waiting = true;
+      target.innerHTML = words[0].substring(0, letterCount)
+      window.setTimeout(function() {
+        var usedColor = colors.shift();
+        colors.push(usedColor);
+        var usedWord = words.shift();
+        words.push(usedWord);
+        x = 1;
+        target.setAttribute('style', 'color:' + colors[0])
+        letterCount += x;
+        waiting = false;
+      }, 1000)
+    } else if (letterCount === words[0].length + 1 && waiting === false) {
+      waiting = true;
+      window.setTimeout(function() {
+        x = -1;
+        letterCount += x;
+        waiting = false;
+      }, 1000)
+    } else if (waiting === false) {
+      target.innerHTML = words[0].substring(0, letterCount)
+      letterCount += x;
+    }
+  }, 120)
+  window.setInterval(function() {
+    if (visible === true) {
+      con.className = 'console-underscore hidden'
+      visible = false;
+
+    } else {
+      con.className = 'console-underscore'
+
+      visible = true;
+    }
+  }, 400)
+}
+    </script>
+
+
+
+
+</body>
+
+</html>
